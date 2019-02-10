@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+div{
+    border-radius: 20px;
+    border-width: 5px;
+    
+}

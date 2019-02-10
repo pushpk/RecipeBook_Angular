@@ -1,9 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to Recipe Book!
-  </h1>
+<app-header (section) = "onNavigate($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+     
+      <app-recipes *ngIf="loadedSection == 'receipe'"></app-recipes>
+      <app-shopping-list *ngIf="loadedSection == 'not receipe'"></app-shopping-list>
 
+          <!-- <app-oddevencompo></app-oddevencompo>
+          <br />
+          <p firstone style="padding : 10px;">First Directive</p> -->
+
+    </div>
+  </div>
 </div>
-
-<router-outlet></router-outlet>
