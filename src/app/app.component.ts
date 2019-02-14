@@ -21,9 +21,4 @@ import {ShoppingListService } from './shopping-list/shopping-list.service';
 })
 export class AppComponent {
  
-
-  loadedSection = 'receipe';
-  onNavigate(feature : string){
-    this.loadedSection = feature;
-  }
   }

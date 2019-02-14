@@ -18,6 +18,8 @@ import { ServerComponent } from './server/server.component';
 import { OddevencompoComponent } from './Experimentst/oddevencompo/oddevencompo.component';
 import { firstDirective } from './Directives/firstdir.directive';
 import {Dropdowndirective} from './Shared/dropdown.directive';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,15 @@ import {Dropdowndirective} from './Shared/dropdown.directive';
     ServerComponent,
     OddevencompoComponent,
     firstDirective,
-    Dropdowndirective
+    Dropdowndirective,
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

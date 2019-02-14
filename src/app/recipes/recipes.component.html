@@ -5,10 +5,12 @@
   </div>
 
   <div class="col-md-7">
-    <app-recipe-detail  *ngIf="selectedRecipe; else infoText" [receipeItem]= "selectedRecipe" >
+      <router-outlet></router-outlet>
+      
+    <!-- <app-recipe-detail  *ngIf="selectedRecipe; else infoText" [receipeItem]= "selectedRecipe" >
       <ng-template #infoText>
-        <p>no Items selected!</p>
+        <p>no Items selected! please select item!</p>
       </ng-template>
-    </app-recipe-detail>
+    </app-recipe-detail> -->
     </div>
 </div>

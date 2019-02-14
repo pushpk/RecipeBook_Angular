@@ -1,0 +1,21 @@
+<div>
+    <div class="form-group" >
+      <label for="name">Recipe Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="recipe.name">
+    </div>
+    <div class="form-group">
+      <label for="status">Recipe Description</label>
+      <input
+      type="text"
+      id="name"
+      class="form-control"
+      [(ngModel)]="recipe.description">
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="onUpdateRecipe()">Update Server</button>
+    </div>
