@@ -18,10 +18,10 @@
           </ul>
          <ul class="nav navbar-nav navbar-light">
                 <li class="dropdown" toggleDropDown>
-                        <a  href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                        <a  class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                 <ul class="dropdown-menu" >
-                        <li><a  href="#">Save Data </a></li>
-                        <li><a  href="#">Fetch Data</a></li> 
+                        <li><a (click)="onSaveData();" style="cursor: pointer">Save Data </a></li>
+                        <li><a (click)="onGetData();" style="cursor: pointer">Fetch Data</a></li> 
                 </ul>     
                  </li>
                    

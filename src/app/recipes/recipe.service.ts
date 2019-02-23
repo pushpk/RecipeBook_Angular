@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../Shared/ingredent.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
+import { HttpDataStorageService } from '../Shared/HttpDataStorage.service';
 
 @Injectable()
 export class RecipeService{
@@ -12,7 +13,8 @@ export class RecipeService{
 
     selectRecipe = new EventEmitter<Recipe>();
     recipesChanged = new Subject<Recipe[]>();
-    private recipes: Recipe[] = [
+     private recipes: Recipe[]=
+    [
         new Recipe("Recipe 1", 
                     "Test Desc",
                     "https://media.istockphoto.com/photos/green-sauce-enchiladas-with-clipping-path-picture-id666147024",
@@ -26,6 +28,12 @@ export class RecipeService{
     
       getRecipes(){
           return this.recipes.slice();
+      }
+
+      setRecipes(fetchedRecipes: Recipe[]){
+
+        this.recipes = fetchedRecipes;
+        this.recipesChanged.next(this.recipes.slice())
       }
 
       getRecipe(index : number) : Recipe{

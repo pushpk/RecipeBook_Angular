@@ -18,10 +18,12 @@ import { ServerComponent } from './server/server.component';
 import { OddevencompoComponent } from './Experimentst/oddevencompo/oddevencompo.component';
 import { firstDirective } from './Directives/firstdir.directive';
 import {Dropdowndirective} from './Shared/dropdown.directive';
+import {HttpDataStorageService} from './Shared/HttpDataStorage.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,10 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [RecipeService,ShoppingListService],
+  providers: [RecipeService,ShoppingListService,HttpDataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
