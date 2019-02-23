@@ -4,39 +4,32 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-      <h1>Recipe Name</h1>
-    </div>
+      <div class="col-xs-12">
+         <img [src]="receipeItem.imagePath" [alt]="receipeItem.name"  style="width : 500px; height: 350px;"/>
+      </div>
+   
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <div class="btn-group" toggleDropDown>
-        <button
-          type="button"
-          class="btn btn-primary dropdown-toggle">
-          Manage Recipe <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a  (click)="AddtoShoppingList(receipeItem);">To Shopping List</a></li>
-          <li><a  [routerLink]="['edit']" >Edit Recipe</a></li>
-          <li><a (click)="onDeleteRecipe(id)"> Delete Recipe</a></li>
-        </ul>
-      </div>
+      <h1> {{receipeItem.name}}</h1>
+    </div>
+  </div>
+ 
+  
+  <div class="row">
+    <div class="col-xs-12">
+       <h4> {{receipeItem.description}}</h4>
     </div>
   </div>
   <div class="row">
       <div class="col-xs-12">
-         <img [src]="receipeItem.imagePath" [alt]="receipeItem.name"  style="width : 100px; height: 100px;"/>
+  
+          <a  class="btn btn-success" (click)="AddtoShoppingList(receipeItem);">To Shopping List</a>
+          <a  class="btn btn-success" [routerLink]="['edit']" >Edit Recipe</a>
+          <a  class="btn btn-danger"  (click)="onDeleteRecipe(id)"> Delete Recipe</a>
+  
       </div>
-    <div class="col-xs-12">
-      {{receipeItem.name}}
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-        {{receipeItem.description}}
-    </div>
-  </div>
   <div class="row">
       <div class="col-xs-12">
         <ul class="list-group">

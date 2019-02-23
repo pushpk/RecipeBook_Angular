@@ -15,15 +15,21 @@ export class RecipeService{
     recipesChanged = new Subject<Recipe[]>();
      private recipes: Recipe[]=
     [
-        new Recipe("Recipe 1", 
-                    "Test Desc",
-                    "https://media.istockphoto.com/photos/green-sauce-enchiladas-with-clipping-path-picture-id666147024",
-                    [ new Ingredient("Apple", 3 ),new Ingredient("Banana", 2 )]),
+        new Recipe("Pesto Tortilla Rollups", 
+                    "Sun-Dried Tomato Pesto Tortilla Rollups has layers of flavor and texture that only takes 15 minutes to prepare. Healthy appetizer that everyone loves.",
+                    "https://veganinthefreezer.com/wp-content/uploads/2016/08/Sun-Dried-Tomato-Pesto-Tortilla-Rollups-temp-close.jpg",
+                    [ new Ingredient("Tortillas ", 10 ),new Ingredient("Cream Cheese", 16 ),new Ingredient("Tomato Pesto", 6 ),new Ingredient("Baby Spinach", 10 )]),
        
-        new Recipe("Recipe 2",
-                   "Test 2 Desc",
-                   "https://media.istockphoto.com/photos/green-sauce-enchiladas-with-clipping-path-picture-id666147024",
-                    [ new Ingredient("Rice", 3 ),new Ingredient("Oil tbs", 2 )])
+        new Recipe("Coconut Crusted Tofu",
+                   "With just two ingredients & 35 minutes of your time you could be tucking into this delicious Easy Coconut Tofu.",
+                   "https://avirtualvegan.com/wp-content/uploads/2016/08/coconut-crusted-tofu-5-708x1024.jpg",
+                    [ new Ingredient("Tofu", 1 ),new Ingredient("Coconut Flour", 2 ),new Ingredient("Salt & Paper", 1 )]),
+
+
+         new Recipe("Potato Veggie Burger",
+                   "If you've ever had latkes or potato pancakes, you know that potatoes absorb the flavors added to them quite well, and have a satisfying texture that is both crunchy and soft.",
+                   "https://www.thespruceeats.com/thmb/QQphmGX4FrKPBBtuZwDkvpvJHhg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/potato-veggie-burgers-recipe-3378626-Hero-5b7d6202c9e77c0057012ca8.jpg",
+                    [ new Ingredient("Burger Bun", 1 ),new Ingredient("Potatoes", 2 ),new Ingredient("Lettuce", 1 ),new Ingredient("Tomatoes", 1 ),new Ingredient("Dressing", 1 )])
       ];
     
       getRecipes(){
