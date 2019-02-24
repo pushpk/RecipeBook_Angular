@@ -14,10 +14,11 @@ export class HttpDataStorageService {
   }
 
   getRecipes() {
-    this.http.get('https://ng-recipe-book-f59f3.firebaseio.com/recipes.json')
+    this.http.get('https://recipebookapiservice20190223034351.azurewebsites.net/api/RecipeBook')
       .pipe(map(
         (response: Response) => {
           const recipes: Recipe[] = response.json();
+          console.log(response);
           for (let recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
@@ -34,4 +35,27 @@ export class HttpDataStorageService {
         }
       );
   }
+
+
+//   getRecipes() {
+//     this.http.get('https://ng-recipe-book-f59f3.firebaseio.com/recipes.json')
+//       .pipe(map(
+//         (response: Response) => {
+//           const recipes: Recipe[] = response.json();
+//           for (let recipe of recipes) {
+//             if (!recipe['ingredients']) {
+//               recipe['ingredients'] = [];
+//             }
+//           }
+//           console.log(recipes);
+//           return recipes;
+//         }
+//       ))
+//       .subscribe(
+//         (recipes: Recipe[]) => {
+//           this.recipeService.setRecipes(recipes);
+//           console.log(recipes);
+//         }
+//       );
+//   }
 }

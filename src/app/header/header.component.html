@@ -11,12 +11,19 @@
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link" routerLink="/recipes">Recipes <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item" routerLinkActive="active"> 
+            <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn"> 
               <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
             </li>
          
           </ul>
-         <ul class="nav navbar-nav navbar-light">
+         <ul class="nav navbar-nav navbar-light" style="float: right;">
+           
+           <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
+           <li *ngIf="isLoggedIn && userName != null" > <a>Welcome {{userName}}</a></li>
+           <li *ngIf="isLoggedIn"><a (click)="onLogout()">Logout</a></li>
+           <li *ngIf="!isLoggedIn"><a routerLink="/signup">Register</a></li>
+
+
                 <li class="dropdown" toggleDropDown>
                         <a  class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                 <ul class="dropdown-menu" >
