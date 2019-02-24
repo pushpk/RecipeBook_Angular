@@ -21,6 +21,8 @@ export class AuthService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
+
+        //using test API from https://reqres.in/
         return this.http.post("https://reqres.in/api/register", data, options);
 
     }
@@ -30,6 +32,8 @@ export class AuthService {
         let data = JSON.stringify({ email, password });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
+
+        //using test API from https://reqres.in/
         return this.http.post("https://reqres.in/api/login", data, options).pipe(
             map((res :Response)=> 
                 res.json()
