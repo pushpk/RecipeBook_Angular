@@ -6,7 +6,7 @@ import { AuthService } from '../auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { RecipeService } from '../recipes/recipe.service';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
 import { HttpDataStorageService} from '../Shared/HttpDataStorage.service';
 
 
@@ -25,7 +25,7 @@ import { HttpDataStorageService} from '../Shared/HttpDataStorage.service';
   ],
   providers: [
       HttpDataStorageService,
-    ShoppingListService,
+
     RecipeService,
     AuthService
   ]
