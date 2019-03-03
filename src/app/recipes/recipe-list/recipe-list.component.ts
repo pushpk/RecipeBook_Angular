@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Recipe} from '../recipe.model';
-import { RecipeService } from '../recipe.service';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromRecipe from '../store/recipe.reducers';
+import { Observable } from 'rxjs';
+
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -8,22 +11,10 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeListComponent implements OnInit {
 
-  
-  recipes: Recipe[];
-  
-  constructor(private recipeService : RecipeService) { }
-
+  recipeState: Observable<fromRecipe.State>;
+  constructor(private store: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {
-
-    this.recipes = this.recipeService.getRecipes();
-
-    
-    this.recipeService.recipesChanged.subscribe((recipes : Recipe[]) => {
-
-        this.recipes = recipes;
-
-    });
+    this.recipeState = this.store.select('recipes');
   }
-
-  }
+}

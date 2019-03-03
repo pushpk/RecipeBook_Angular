@@ -5,35 +5,32 @@
   </div>
   <div class="row">
       <div class="col-xs-12">
-         <img [src]="receipeItem.imagePath" [alt]="receipeItem.name"  style="width : 500px; height: 350px;"/>
+         <img [src]="(recipeState | async).recipes[id].imagePath" [alt]="(recipeState | async).recipes[id].name"  style="width : 500px; height: 350px;"/>
       </div>
    
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h1> {{receipeItem.name}}</h1>
+      <h1> {{(recipeState | async).recipes[id].name}}</h1>
     </div>
   </div>
- 
-  
   <div class="row">
     <div class="col-xs-12">
-       <h4> {{receipeItem.description}}</h4>
+       <h4> {{(recipeState | async).recipes[id].description}}</h4>
     </div>
   </div>
   <div class="row">
       <div class="col-xs-12">
   
           <a  class="btn btn-success" (click)="AddtoShoppingList(receipeItem);">To Shopping List</a>
-          <a  class="btn btn-success" [routerLink]="['edit']" >Edit Recipe</a>
+          <a  class="btn btn-success" (click)="onEditRecipe()" >Edit Recipe</a>
           <a  class="btn btn-danger"  (click)="onDeleteRecipe(id)"> Delete Recipe</a>
-  
       </div>
     </div>
   <div class="row">
       <div class="col-xs-12">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let ingredeint of receipeItem.ingredeints">
+          <li class="list-group-item" *ngFor="let ingredeint of (recipeState | async).recipes[id].ingredeints">
             {{ingredeint.name }} - {{ingredeint.amount}}
           </li>
         </ul>

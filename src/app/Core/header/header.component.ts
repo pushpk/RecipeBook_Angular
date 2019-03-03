@@ -1,9 +1,16 @@
 import { Component, Output,EventEmitter, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { HttpDataStorageService } from '../../Shared/HttpDataStorage.service';
 import { AuthService } from '../../auth/auth.service';
+import * as fromApp from '../../store/app.reducers';
+import *  as  fromAuthReducers from '../../auth/store/auth.reducers';
+import *  as  fromAuthActions from '../../auth/store/auth.actions';
+import * as RecipeActions from '../../recipes/store/recipe.actions';
 
+
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 @Component({
+
   selector: 'app-header',
   templateUrl: '../header/header.component.html'
  
@@ -11,17 +18,24 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   userName: string;
+  authState: Observable<fromAuthReducers.State>;
 
-  constructor(private httpDataStorageService: HttpDataStorageService, private authService : AuthService){}
+  constructor(private authService : AuthService, private store : Store<fromApp.AppState>){}
   
   ngOnInit() {
+      this.store.select('authReducers').subscribe(data => {
 
-    this.authService.authServiceStatusChanged.subscribe((statusChanged : boolean) => {
-      this.isLoggedIn = statusChanged;
-      this.userName =  localStorage.getItem('username');
-   });
+        if(data.authenticated){
+               this.isLoggedIn = true;
+               this.userName =  localStorage.getItem('userEmail');
+        }
+        else{
+          this.isLoggedIn = false;
+          this.userName =  null;
+        }
+  });
 
-  }
+}
 @Output() section = new EventEmitter<string>();
 
   showSection(sectionName : string){
@@ -29,27 +43,15 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout(){
-
-    this.authService.logout();
-    this.authService.authServiceStatusChanged.subscribe((statusChanged : boolean) => {
-       this.isLoggedIn = statusChanged;
-    });
-
+      this.store.dispatch(new fromAuthActions.Logout());
   }
   
   onSaveData(){
-
-    this.httpDataStorageService.storeRecipes()
-          .subscribe((response: Response) => {
-          
-              console.log(response);
-            }
-        );
-    
+    this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 
   onGetData(){
-    this.httpDataStorageService.getRecipes();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 }
 

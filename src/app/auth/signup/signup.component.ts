@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import {Response} from '@angular/http'
+import * as  fromAPP from '../../store/app.reducers';
+import * as  AuthActions from '../store/auth.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import {Response} from '@angular/http'
 export class SignupComponent implements OnInit {
   wasSignupSuccessful: boolean = false;
 
-  constructor(private authService : AuthService) { }
+  constructor(private store  : Store<fromAPP.AppState>) { }
 
   ngOnInit() {
   }
@@ -21,20 +22,7 @@ export class SignupComponent implements OnInit {
 
     const email = form.value.email;
     const password = form.value.password;
-
-       this.authService.RegisterUser(email, password).subscribe(
-        (res : Response) =>{
-          console.log(res);
-         if(res.status == 201){
-          this.wasSignupSuccessful =  true;
-         }
-         else {
-          this.wasSignupSuccessful =  false;
-         }
-        }
-     );
-
-     console.log("was this successful "+ this.wasSignupSuccessful);
+    this.store.dispatch(new AuthActions.Try_Signup({email : email, password : password}));
   }
 
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import {Response} from '@angular/http'
 import { Router } from '@angular/router';
+import * as  fromAPP from '../../store/app.reducers';
+import * as  AuthActions from '../store/auth.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signin',
@@ -13,28 +14,14 @@ export class SigninComponent implements OnInit {
   isAuthenticated: boolean;
   userEmail: any;
 
-  constructor(private authService : AuthService, private router : Router) { }
+  constructor(private store: Store<fromAPP.AppState>, private router: Router) { }
 
   ngOnInit() {
   }
-
-  onLogin(form : NgForm)
-  {
-    this.userEmail= form.value.email;
+  onLogin(form: NgForm) {
+    this.userEmail = form.value.email;
     const password = form.value.password;
 
-    this.authService.Login(this.userEmail, password).subscribe(
-      result => { if(result){
-        this.isAuthenticated = result;
-        this.authService.authServiceStatusChanged.next(this.isAuthenticated);
-        this.router.navigate(['/recipes']); 
-      }
-    }
-      
-      
-   );
+    this.store.dispatch(new AuthActions.Try_Signin({ email: this.userEmail, password: password }));
   }
-
-
- 
 }
